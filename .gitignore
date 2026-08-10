@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# Generated dataset — deterministic for a given --seed, so commit the
+# generator instead of its output. Run: python data/generate_data.py
+data/*.csv
+
+# Trained model artifact — regenerate with: python -m detection.train
+detection/model/*.joblib
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
