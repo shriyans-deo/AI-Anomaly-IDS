@@ -1,19 +1,3 @@
-"""
-The detection engine.
-
-Combines two layers:
-
-  1. Isolation Forest (unsupervised ML) -- learns what normal traffic looks
-     like and flags statistical outliers. Catches attacks nobody wrote a rule
-     for, but its output is a score, not an explanation.
-
-  2. Rule checks (deterministic) -- encode well-understood attack signatures.
-     Fast, explainable, and they fire regardless of what the model thinks.
-
-Real IDS/SIEM products layer these the same way, for the same reason: rules
-give you precision and a human-readable reason on known attacks, ML gives you
-coverage on unknown ones.
-"""
 
 import os
 import joblib
@@ -27,13 +11,7 @@ from .preprocessing import (
     split_baseline,
 )
 
-# --------------------------------------------------------------------------
-# Rules
-#
-# Each rule is (name, predicate). The predicate receives one flow record as a
-# dict and returns True if the rule fires. Add rules here -- they need no
-# retraining, which is exactly why this layer is useful during a hackathon.
-# --------------------------------------------------------------------------
+
 
 RULES = [
     (

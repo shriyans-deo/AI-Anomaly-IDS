@@ -1,19 +1,9 @@
-"""
-Feature preparation for the anomaly detector.
 
-Everything about *what the model sees* lives here: the feature schema, how
-raw flow records are loaded, and how they are scaled. Keeping this separate
-from detector.py means the feature set can change without touching the
-detection logic -- and the same transform is guaranteed to be applied at
-train time and at inference time.
-"""
 
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 
-# The features the model actually learns from. Order matters: the scaler and
-# the model are both fitted against this exact ordering, so a saved model is
-# only valid for this list. If you change it, retrain.
+
 FEATURE_COLUMNS = [
     "num_connections",
     "unique_dst_ports",
@@ -24,10 +14,7 @@ FEATURE_COLUMNS = [
     "avg_conn_duration",
 ]
 
-# Present in the CSV but never fed to the model.
-#   label   -> ground truth, used only for evaluation
-#   src_ip  -> an identifier, not a behaviour; training on it would teach the
-#              model "10.0.0.66 is bad" instead of "scanning is bad"
+
 LABEL_COLUMN = "label"
 NORMAL_LABEL = "normal"
 
